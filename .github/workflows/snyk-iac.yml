@@ -6,7 +6,11 @@
 # and fail PR checks, see https://github.com/snyk/actions/
 
 name: Snyk Infrastructure as Code
-on: push
+
+on:
+  push:
+    branches: [name-the-branch-to-enable]
+
 jobs:
   snyk:
     runs-on: ubuntu-latest
