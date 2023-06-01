@@ -5,8 +5,7 @@ This action prints "Hello World" or "Hello" + the name of a person to greet to t
 ## Source
 https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action
 
-[![GitHub Super-Linter](https://github.com/shdfreeman/
-hello-world-javascript-action/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
+[![GitHub Super-Linter](https://github.com/shdfreeman/hello-world-javascript-action/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
 
 ## Inputs
 
