@@ -11,8 +11,10 @@ jobs:
   snyk:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      actions: read
+      contents: read
       pull-requests: write
+      security-events: write
     steps:
       - uses: actions/checkout@v2
       - name: Run Snyk to check configuration files for security issues
