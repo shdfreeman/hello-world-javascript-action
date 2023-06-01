@@ -9,10 +9,10 @@ module.exports = eval("require")("@actions/core");
 
 /***/ }),
 
-/***/ 831:
+/***/ 573:
 /***/ ((module) => {
 
-module.exports = eval("require")("@actions/http-client");
+module.exports = eval("require")("@actions/github");
 
 
 /***/ })
@@ -59,7 +59,7 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
 const core = __nccwpck_require__(445);
-const github = __nccwpck_require__(831);
+const github = __nccwpck_require__(573);
 
 try {
   // `who-to-greet` input defined in action metadata file
