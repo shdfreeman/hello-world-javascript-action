@@ -1,4 +1,8 @@
-on: [push]
+name: Javascript versioned github action
+
+on:
+  push:
+    branches: [master] #change to main to make it run
 
 jobs:
   hello_world_job:
