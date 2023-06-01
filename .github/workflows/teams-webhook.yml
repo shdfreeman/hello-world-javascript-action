@@ -7,7 +7,7 @@ on:
 jobs:
   success:
     name: Example with all parameters
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
       - name: Microsoft Teams Notification
