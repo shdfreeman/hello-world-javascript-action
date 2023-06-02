@@ -19,8 +19,8 @@ jobs:
   azure-cli-calls:
     runs-on: ubuntu-latest
     env:
-      GROUP: tempGroup-$SUFFIX
-      VAULT: tempVault-$SUFFIX
+      GROUP: 'tempGroup-${{ env.SUFFIX }}'
+      VAULT: 'tempVault-${{ env.SUFFIX }}'
 
     steps:
       - name: 'Azure CLI login using OIDC'
