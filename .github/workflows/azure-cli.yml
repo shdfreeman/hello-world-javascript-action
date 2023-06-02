@@ -12,7 +12,7 @@ permissions:
   contents: read
 
 jobs:
-  test-cli-call:
+  azure-cli-calls:
     runs-on: ubuntu-latest
     steps:
       - name: 'Azure CLI login using OIDC'
@@ -31,7 +31,7 @@ jobs:
         run: |
           LOCATION="westus"
           GROUP="tempGroup"
-          VAULT="tempVault"
+          VAULT="tempVault-20230602"
           
           az group create --name $GROUP --location $LOCATION
           az keyvault create --name $VAULT --resource-group $GROUP --location $LOCATION
