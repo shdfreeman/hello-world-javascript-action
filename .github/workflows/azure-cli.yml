@@ -12,15 +12,15 @@ permissions:
   contents: read
 
 env:
-  LOCATION:westus
-  SUFFIX:20230605
+  LOCATION: westus
+  SUFFIX: 20230605
 
 jobs:
   azure-cli-calls:
     runs-on: ubuntu-latest
     env:
-      GROUP:tempGroup-$SUFFIX
-      VAULT:tempVault-$SUFFIX
+      GROUP: tempGroup-$SUFFIX
+      VAULT: tempVault-$SUFFIX
 
     steps:
       - name: 'Azure CLI login using OIDC'
