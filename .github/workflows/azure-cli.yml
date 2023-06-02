@@ -29,9 +29,10 @@ jobs:
 
       - name: 'Create group, vault and secrets'
         run: |
+          SUFFIX="20230603"
           LOCATION="westus"
-          GROUP="tempGroup-20230602"
-          VAULT="tempVault-20230602"
+          GROUP="tempGroup-$SUFFIX"
+          VAULT="tempVault-$SUFFIX"
           
           az group create --name $GROUP --location $LOCATION
           az keyvault create --name $VAULT --resource-group $GROUP --location $LOCATION
