@@ -11,9 +11,17 @@ permissions:
   id-token: write
   contents: read
 
+env:
+  LOCATION:westus
+  SUFFIX:20230605
+
 jobs:
   azure-cli-calls:
     runs-on: ubuntu-latest
+    env:
+      GROUP:tempGroup-$SUFFIX
+      VAULT:tempVault-$SUFFIX
+
     steps:
       - name: 'Azure CLI login using OIDC'
         uses: azure/login@v1
@@ -29,11 +37,6 @@ jobs:
 
       - name: 'Create group, vault and secrets'
         run: |
-          SUFFIX="20230604"
-          LOCATION="westus"
-          GROUP="tempGroup-$SUFFIX"
-          VAULT="tempVault-$SUFFIX"
-          
           az group create --name $GROUP --location $LOCATION
           az keyvault create --name $VAULT --resource-group $GROUP --location $LOCATION
           az keyvault secret set --vault-name $VAULT --name "example1" --value "example1secretvalue"
@@ -42,11 +45,6 @@ jobs:
       - name: 'Get secrets'
         id: azure-keyvault-secrets
         run: |
-          SUFFIX="20230604"
-          LOCATION="westus"
-          GROUP="tempGroup-$SUFFIX"
-          VAULT="tempVault-$SUFFIX"
-
           secrets_get=(example1 example2)
           for secret_get in ${secrets_get[@]}
           do
@@ -59,5 +57,3 @@ jobs:
         run: |
           az group Create --name ${{ steps.azure-keyvault-secrets.outputs.example1 }} --location $LOCATION
           az group Create --name ${{ steps.azure-keyvault-secrets.outputs.example2 }} --location $LOCATION
-
-          
