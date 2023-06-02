@@ -29,7 +29,7 @@ jobs:
 
       - name: 'Create group, vault and secrets'
         run: |
-          LOCATION="uswest"
+          LOCATION="westus"
           GROUP="tempGroup"
           VAULT="tempVault"
           
