@@ -2,17 +2,17 @@ name: Azure CLI
 
 on: 
   workflow_dispatch:
-  pull_request:
-      branches:
-        - main
-  push:
+  # pull_request:
+  #     branches:
+  #       - main
+  # push:
 
 permissions:
   id-token: write
   contents: read
 
 jobs:
-  publish:
+  test-cli-call:
     runs-on: ubuntu-latest
     steps:
       - name: 'Azure CLI login using OIDC'
@@ -22,7 +22,20 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-      - name: 'Run az commands'
+      - name: 'Run azure cli commands'
         run: |
           az account show
           az group list
+
+      - name: 'Create group, vault and secrets'
+        run: |
+          LOCATION="uswest"
+          GROUP="tempGroup"
+          VAULT="tempVault"
+          
+          az group create --name $GROUP --location $LOCATION
+          az keyvault create --name $VAULT --resource-group $GROUP --location $LOCATION
+          az keyvault secret set --vault-name $VAULT --name "example1" --value "example1secretvalue"
+          az keyvault secret set --vault-name $VAULT --name "example2" --value "example2secretvalue"
+
+  
