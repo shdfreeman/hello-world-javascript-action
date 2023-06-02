@@ -30,7 +30,7 @@ jobs:
       - name: 'Create group, vault and secrets'
         run: |
           LOCATION="westus"
-          GROUP="tempGroup"
+          GROUP="tempGroup-20230602"
           VAULT="tempVault-20230602"
           
           az group create --name $GROUP --location $LOCATION
@@ -38,4 +38,20 @@ jobs:
           az keyvault secret set --vault-name $VAULT --name "example1" --value "example1secretvalue"
           az keyvault secret set --vault-name $VAULT --name "example2" --value "example2secretvalue"
 
-  
+      - name: 'Get secrets'
+        id: azure-keyvault-secrets
+        run: |
+          secrets_get=(example1 example2)
+          for secret_get in ${secrets_get[@]}
+          do
+            value=$(az keyvault secret show --name $secret_get --vault-name $VAULT --query value --output tsv)
+            echo "::add-mask::$value"
+            echo "$secret_get=$value" >> $GITHUB_OUTPUT
+          done
+
+      - name: Create resource groups with secret values # to know the secret values are obtained
+        run: |
+          az group Create --name ${{ steps.azure-keyvault-secrets.outputs.example1 }} --location $LOCATION
+          az group Create --name ${{ steps.azure-keyvault-secrets.outputs.example2 }} --location $LOCATION
+
+          
