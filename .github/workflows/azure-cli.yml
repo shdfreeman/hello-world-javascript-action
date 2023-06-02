@@ -54,3 +54,9 @@ jobs:
         run: |
           az group Create --name ${{ steps.azure-keyvault-secrets.outputs.example1 }} --location $LOCATION
           az group Create --name ${{ steps.azure-keyvault-secrets.outputs.example2 }} --location $LOCATION
+
+      - name: Cleanup resources
+        run: |
+          az group Delete --name ${{ steps.azure-keyvault-secrets.outputs.example1 }} --no-wait --yes
+          az group Delete --name ${{ steps.azure-keyvault-secrets.outputs.example2 }} --no-wait --yes
+          az group Delete --name $GROUP --no-wait --yes
