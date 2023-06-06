@@ -5,6 +5,9 @@
 # For more examples, including how to limit scans to only high-severity issues
 # and fail PR checks, see https://github.com/snyk/actions/
 
+# NOTE: to use code scanning on github, the repository must be public OR the account must have enterprise and a license for GitHub Advanced Security.
+# https://docs.github.com/en/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/configuring-code-scanning-for-a-repository
+
 name: Snyk Infrastructure as Code
 
 on:

@@ -1,5 +1,7 @@
 name: Javascript local code action
 
+# https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action
+# uses vercel to package javascript into /dist
 on:
   push:
     branches: [master] #change to main to make it run
